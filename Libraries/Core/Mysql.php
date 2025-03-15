@@ -5,6 +5,7 @@
 		private $conexion;
 		private $strquery;
 		private $arrValues;
+		// protected $arrValues;
 
 		function __construct()
 		{
@@ -15,6 +16,7 @@
 		//Insertar un registro
 		public function insert(string $query, array $arrValues)
 		{
+			
 			$this->strquery = $query;
 			$this->arrVAlues = $arrValues;
         	$insert = $this->conexion->prepare($this->strquery);
