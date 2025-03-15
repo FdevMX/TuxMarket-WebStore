@@ -155,4 +155,80 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 	}
 
+	// // Manejo del formulario de registro
+	// if(document.querySelector("#formRegistro")){
+	// 	let formRegistro = document.querySelector("#formRegistro");
+	// 	formRegistro.onsubmit = function(e) {
+	// 		e.preventDefault();
+	// 		console.log("Formulario de registro enviado");
+	
+	// 		let strNombre = document.querySelector('#txtNombre').value;
+	// 		let strApellido = document.querySelector('#txtApellido').value;
+	// 		let strEmail = document.querySelector('#txtEmail').value;
+	// 		let strPassword = document.querySelector('#txtPassword').value;
+			
+	// 		console.log("Datos: ", {
+	// 			nombre: strNombre,
+	// 			apellido: strApellido,
+	// 			email: strEmail,
+	// 			password: "***"
+	// 		});
+			
+	// 		if(strNombre == "" || strApellido == "" || strEmail == "" || strPassword == "")
+	// 		{
+	// 			swal("Por favor", "Completa todos los campos del formulario.", "error");
+	// 			return false;
+	// 		}
+			
+	// 		divLoading.style.display = "flex";
+	// 		var request = (window.XMLHttpRequest) ? 
+	// 					new XMLHttpRequest() : 
+	// 					new ActiveXObject('Microsoft.XMLHTTP');
+			
+	// 		var ajaxUrl = base_url+'/Login/registro'; 
+	// 		var formData = new FormData(formRegistro);
+			
+	// 		console.log("URL: ", ajaxUrl);
+			
+	// 		request.open("POST", ajaxUrl, true);
+	// 		request.send(formData);
+			
+	// 		request.onreadystatechange = function(){
+	// 			if(request.readyState == 4) {
+	// 				console.log("Respuesta recibida, status: ", request.status);
+	// 				console.log("Respuesta: ", request.responseText);
+					
+	// 				if(request.status == 200){
+	// 					try {
+	// 						var objData = JSON.parse(request.responseText);
+	// 						if(objData.status)
+	// 						{
+	// 							swal({
+	// 								title: "Registro exitoso",
+	// 								text: objData.msg,
+	// 								type: "success",
+	// 								confirmButtonText: "Iniciar sesión",
+	// 								closeOnConfirm: false,
+	// 							}, function(isConfirm) {
+	// 								if (isConfirm) {
+	// 									window.location = base_url+'/login';
+	// 								}
+	// 							});
+	// 						}else{
+	// 							swal("Atención", objData.msg, "error");
+	// 						}
+	// 					} catch(e) {
+	// 						console.error("Error al procesar respuesta:", e);
+	// 						console.log("Respuesta recibida:", request.responseText);
+	// 						swal("Error", "Ha ocurrido un problema en el proceso", "error");
+	// 					}
+	// 				}else{
+	// 					swal("Atención","Error en el proceso", "error");
+	// 				}
+	// 			}
+	// 			divLoading.style.display = "none";
+	// 		}
+	// 	}
+	// }
+
 }, false);
