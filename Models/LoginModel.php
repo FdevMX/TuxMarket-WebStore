@@ -84,5 +84,93 @@
 			$request = $this->update($sql,$arrData);
 			return $request;
 		}
+
+		public function insertUsuario(string $identificacion, string $nombre, string $apellido, 
+									 int $telefono, string $email, string $password, 
+									 int $tipoid, int $status)
+		{
+			try {
+				// Guardar los valores en propiedades
+				$this->strIdentificacion = $identificacion;
+				$this->strNombre = $nombre;
+				$this->strApellido = $apellido;
+				$this->intTelefono = $telefono;
+				$this->strEmail = $email;
+				$this->strPassword = $password;
+				$this->intTipoId = $tipoid;
+				$this->intStatus = $status;
+				$return = 0;
+				
+				// Mostrar datos para depuración
+				error_log("Intentando registrar: " . $email);
+				
+				// Verificar si el email ya existe
+				$sql = "SELECT * FROM persona WHERE email_user = '{$this->strEmail}'";
+				if(!empty($this->strIdentificacion)){
+					$sql .= " OR identificacion = '{$this->strIdentificacion}'";
+				}
+				
+				error_log("SQL de verificación: " . $sql);
+				$request = $this->select_all($sql);
+				
+				if(empty($request))
+				{
+					// Preparar inserción
+					$query_insert = "INSERT INTO persona(identificacion,nombres,apellidos,telefono,email_user,password,rolid,status) 
+								  VALUES(?,?,?,?,?,?,?,?)";
+					
+					// Crear array de datos
+					$arrData = array(
+						$this->strIdentificacion,
+						$this->strNombre,
+						$this->strApellido,
+						$this->intTelefono,
+						$this->strEmail,
+						$this->strPassword,
+						$this->intTipoId,
+						$this->intStatus
+					);
+					
+					// Intentar insertar y capturar el resultado
+					error_log("Ejecutando inserción con datos: " . json_encode($arrData));
+					
+					// Verificar si realmente hay conexión a la base de datos
+					if($this->conexion){
+						// Intentar inserción directa con PDO si hay problemas
+						try {
+							$stmt = $this->conexion->prepare($query_insert);
+							$result = $stmt->execute($arrData);
+							if($result) {
+								$return = $this->conexion->lastInsertId();
+								error_log("Inserción exitosa: ID=" . $return);
+							} else {
+								$error = $stmt->errorInfo();
+								error_log("Error PDO: " . json_encode($error));
+								$return = 0;
+							}
+						} catch(Exception $e) {
+							error_log("Excepción PDO: " . $e->getMessage());
+							// Si falla, intentamos con el método original
+							$request_insert = $this->insert($query_insert, $arrData);
+							$return = $request_insert;
+							error_log("Resultado del insert(): " . $return);
+						}
+					} else {
+						// Usar el método heredado de la clase padre
+						$request_insert = $this->insert($query_insert, $arrData);
+						$return = $request_insert;
+						error_log("Resultado del insert(): " . $return);
+					}
+				} else {
+					error_log("Usuario ya existe en la base de datos");
+					$return = "exist";
+				}
+				
+				return $return;
+			} catch(Exception $e) {
+				error_log("Error en insertUsuario: " . $e->getMessage());
+				return 0;
+			}
+		}
 	}
  ?>
