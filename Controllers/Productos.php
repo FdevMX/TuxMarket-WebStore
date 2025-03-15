@@ -2,8 +2,9 @@
 	class Productos extends Controllers{
 		public function __construct()
 		{
+			session_start(); // Moverlos arriba
 			parent::__construct();
-			session_start();
+			
 			if(empty($_SESSION['login']))
 			{
 				header('Location: '.base_url().'/login');
@@ -52,7 +53,8 @@
 					}
 					$arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
 				}
-				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrData);
 			}
 			die();
 		}
@@ -117,7 +119,8 @@
 						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 					}
 				}
-				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			}
 			die();
 		}
@@ -139,7 +142,8 @@
 						$arrData['images'] = $arrImg;
 						$arrResponse = array('status' => true, 'data' => $arrData);
 					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					$this->sendJson($arrResponse);
 				}
 			}
 			die();
@@ -161,7 +165,8 @@
 						$arrResponse = array('status' => false, 'msg' => 'Error de carga.');
 					}
 				}
-				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			}
 			die();
 		}
@@ -183,7 +188,8 @@
 						$arrResponse = array('status' => false, 'msg' => 'Error al eliminar');
 					}
 				}
-				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			}
 			die();
 		}
@@ -199,7 +205,8 @@
 					}else{
 						$arrResponse = array('status' => false, 'msg' => 'Error al eliminar el producto.');
 					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					$this->sendJson($arrResponse);
 				}
 			}
 			die();

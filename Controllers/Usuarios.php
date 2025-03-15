@@ -3,8 +3,9 @@
 	class Usuarios extends Controllers{
 		public function __construct()
 		{
-			parent::__construct();
 			session_start();
+			parent::__construct();
+			
 			if(empty($_SESSION['login']))
 			{
 				header('Location: '.base_url().'/login');
@@ -85,7 +86,8 @@
 						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 					}
 				}
-				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			}
 			die();
 		}
@@ -129,7 +131,8 @@
 					}
 					$arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
 				}
-				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrData);
 			}
 			die();
 		}
@@ -146,7 +149,8 @@
 					}else{
 						$arrResponse = array('status' => true, 'data' => $arrData);
 					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					$this->sendJson($arrResponse);
 				}
 			}
 			die();
@@ -164,7 +168,8 @@
 					}else{
 						$arrResponse = array('status' => false, 'msg' => 'Error al eliminar el usuario.');
 					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					$this->sendJson($arrResponse);
 				}
 			}
 			die();
@@ -207,7 +212,8 @@
 						$arrResponse = array("status" => false, "msg" => 'No es posible actualizar los datos.');
 					}
 				}
-				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			}
 			die();
 		}
@@ -234,7 +240,8 @@
 						$arrResponse = array("status" => false, "msg" => 'No es posible actualizar los datos.');
 					}
 				}
-				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			}
 			die();
 		}

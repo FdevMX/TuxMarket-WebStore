@@ -3,8 +3,9 @@
 	class Roles extends Controllers{
 		public function __construct()
 		{
-			parent::__construct();
 			session_start();
+			parent::__construct();
+
 			//session_regenerate_id(true);
 			if(empty($_SESSION['login']))
 			{
@@ -54,7 +55,8 @@
 					}
 					$arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
 				}
-				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrData);
 			}
 			die();
 		}
@@ -87,7 +89,8 @@
 					}else{
 						$arrResponse = array('status' => true, 'data' => $arrData);
 					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					$this->sendJson($arrResponse);
 				}
 			}
 			die();
@@ -128,7 +131,8 @@
 				}else{
 					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 				}
-				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			die();
 		}
 
@@ -146,7 +150,8 @@
 					}else{
 						$arrResponse = array('status' => false, 'msg' => 'Error al eliminar el Rol.');
 					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					// echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					$this->sendJson($arrResponse);
 				}
 			}
 			die();

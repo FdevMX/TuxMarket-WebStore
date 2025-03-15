@@ -65,6 +65,7 @@
 					$arrResponse = array("status" => false, "msg" => 'No es posible asignar los permisos.');
 				}
 				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				$this->sendJson($arrResponse);
 			}
 			die();
 		}
