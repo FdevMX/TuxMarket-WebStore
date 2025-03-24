@@ -54,7 +54,26 @@ TuxMarket es una plataforma de comercio electrónico completa y moderna desarrol
          - Contraseña: `admin123`
 
 ## 📁 Estructura del Proyecto
-<!-- Añadir estructura del proyecto aquí -->
+```
+TuxMarket-WebStore/
+├── Assets/               # Recursos públicos (CSS, JS, imágenes)
+│   ├── css/              # Estilos
+│   ├── js/               # Scripts
+│   └── images/           # Imágenes del sistema
+├── Config/               # Archivos de configuración
+├── Controllers/          # Controladores MVC
+├── Database/             # Script SQL y migraciones
+├── Helpers/              # Funciones auxiliares
+├── Libraries/            # Librerías del sistema
+├── Models/               # Modelos MVC
+├── Views/                # Vistas MVC
+│   ├── Dashboard/        # Vistas del panel admin
+│   ├── Errors/           # Páginas de error
+│   ├── Login/            # Vistas de autenticación
+│   └── Template/         # Plantillas base
+├── index.php             # Punto de entrada
+└── .htaccess             # Configuración de Apache
+```
 
 ## 💾 Configuración de la Base de Datos
 1. Crea una base de datos MySQL/MariaDB con el nombre `db_tiendavirtual`
