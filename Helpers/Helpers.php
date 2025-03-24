@@ -83,6 +83,67 @@
 
             try {
                 //Server settings
+                $mail->SMTPDebug = 0;                      //Enable verbose debug output (0 - sin debug, 2 - detallado)
+                $mail->isSMTP();                                            
+                
+                // Configuración de Mailtrap - REEMPLAZA CON TUS CREDENCIALES
+                $mail->Host       = 'sandbox.smtp.mailtrap.io';           // Servidor SMTP de Mailtrap
+                $mail->SMTPAuth   = true;                               
+                $mail->Username   = '9896e01a65ac08';                // Tu usuario de Mailtrap
+                $mail->Password   = 'af36d16cdeb093';              // Tu contraseña de Mailtrap
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;      
+                $mail->Port       = 2525;                                // Puerto de Mailtrap
+
+                //Recipients
+                $mail->setFrom('noreply@tuxmarket.com', 'TuxMarket WebStore');
+                $mail->addAddress($data['email']);     //Add a recipient
+                if(!empty($data['emailCopia'])){
+                    $mail->addBCC($data['emailCopia']);
+                }
+                $mail->CharSet = 'UTF-8';
+                
+                //Content
+                $mail->isHTML(true);                                  
+                $mail->Subject = $data['asunto'];
+                $mail->Body    = $mensaje;
+                
+                $mail->send();
+                return true;
+            } catch (Exception $e) {
+                // Para depuración
+                error_log("Error al enviar correo: " . $mail->ErrorInfo);
+                return false;
+            }  
+        }
+    }
+
+    function sendEmailOriginal($data,$template)
+    {
+        if(ENVIRONMENT == 1){
+            $asunto = $data['asunto'];
+            $emailDestino = $data['email'];
+            $empresa = NOMBRE_REMITENTE;
+            $remitente = EMAIL_REMITENTE;
+            $emailCopia = !empty($data['emailCopia']) ? $data['emailCopia'] : "";
+            //ENVIO DE CORREO
+            $de = "MIME-Version: 1.0\r\n";
+            $de .= "Content-type: text/html; charset=UTF-8\r\n";
+            $de .= "From: {$empresa} <{$remitente}>\r\n";
+            $de .= "Bcc: $emailCopia\r\n";
+            ob_start();
+            require_once("Views/Template/Email/".$template.".php");
+            $mensaje = ob_get_clean();
+            $send = mail($emailDestino, $asunto, $mensaje, $de);
+            return $send;
+        }else{
+           //Create an instance; passing `true` enables exceptions
+            $mail = new PHPMailer(true);
+            ob_start();
+            require_once("Views/Template/Email/".$template.".php");
+            $mensaje = ob_get_clean();
+
+            try {
+                //Server settings
                 $mail->SMTPDebug = 0;                      //Enable verbose debug output
                 $mail->isSMTP();                                            //Send using SMTP
                 $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
