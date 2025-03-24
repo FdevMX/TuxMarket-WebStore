@@ -160,5 +160,78 @@
 			die();
 		}
 
+		// Método para mostrar la vista de registro
+		public function register()
+		{
+			$data['page_tag'] = "Registro - ".NOMBRE_EMPESA;
+			$data['page_title'] = NOMBRE_EMPESA;
+			$data['page_name'] = "registro";
+			$data['page_functions_js'] = "functions_registro.js";
+			$this->views->getView($this,"register",$data);
+		}
+
+		// Método para procesar el registro
+		public function registro()
+		{
+			// Desactivar mensajes de error para evitar que interfieran con la respuesta JSON
+			error_reporting(0);
+			
+			if($_POST){
+				// Validar campos requeridos
+				if(empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || 
+				empty($_POST['txtEmail']) || empty($_POST['txtPassword']))
+				{
+					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+				}else{
+					// Limpiar y preparar los datos
+					$strNombre = ucwords(strClean($_POST['txtNombre']));
+					$strApellido = ucwords(strClean($_POST['txtApellido']));
+					$strEmail = strtolower(strClean($_POST['txtEmail']));
+					$strPassword = hash("SHA256", $_POST['txtPassword']);
+					
+					// Valores por defecto para registro de cliente
+					$strIdentificacion = ""; // Opcional
+					$intTelefono = 0;        // Opcional
+					$intTipoId = 3;          // Cliente
+					$intStatus = 1;          // Activo
+					
+					// Debug para ver los datos que se están enviando
+					error_log("Datos de registro: Nombre=$strNombre, Email=$strEmail, Rol=$intTipoId");
+					
+					// Intentar insertar usuario
+					$request_user = $this->model->insertUsuario(
+						$strIdentificacion,
+						$strNombre, 
+						$strApellido, 
+						$intTelefono,
+						$strEmail,
+						$strPassword,
+						$intTipoId,
+						$intStatus
+					);
+					
+					error_log("Resultado de inserción: " . $request_user);
+					
+					// Evaluar respuesta y preparar mensaje
+					if($request_user > 0){
+						$arrResponse = array('status' => true, 
+										'msg' => 'Registro exitoso. Ya puedes iniciar sesión.',
+										'userId' => $request_user);
+					}else if($request_user == 'exist'){
+						$arrResponse = array('status' => false, 
+										'msg' => 'El email ya está registrado.');
+					}else{
+						$arrResponse = array('status' => false, 
+										'msg' => 'No es posible completar el registro. Intenta más tarde.');
+					}
+				}
+				
+				// Enviar respuesta usando el método sendJson del controlador base
+				// $this->sendJson($arrResponse);
+				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+
 	}
  ?>
