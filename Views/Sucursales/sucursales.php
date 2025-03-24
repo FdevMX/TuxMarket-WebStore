@@ -28,9 +28,9 @@ $idpagina = $data['page']['idpost'];
           <img src="<?= media() ?>/images/s1.jpg" alt="Sucural uno">
           <div class="card-body">
             <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat necessitatibus eligendi, soluta ipsa natus, at earum qui enim, illum doloremque, accusantium autem nemo est esse nulla neque eaque repellendus amet.</p>
-            <p>Dirección: Antigua Gautemala <br>
+            <p>Dirección: Mexico <br>
               Teléfono: 4654645 <br>
-              Correo: info@abelosh.com
+              Correo: info@tuxmarket.com
             </p>
           </div>
         </div>
@@ -40,9 +40,9 @@ $idpagina = $data['page']['idpost'];
           <img src="<?= media() ?>/images/s1.jpg" alt="Sucural uno">
           <div class="card-body">
             <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat necessitatibus eligendi, soluta ipsa natus, at earum qui enim, illum doloremque, accusantium autem nemo est esse nulla neque eaque repellendus amet.</p>
-            <p>Dirección: Antigua Gautemala <br>
+            <p>Dirección: Mexico <br>
               Teléfono: 4654645 <br>
-              Correo: info@abelosh.com
+              Correo: info@tuxmarket.com
             </p>
           </div>
         </div>
@@ -52,9 +52,9 @@ $idpagina = $data['page']['idpost'];
           <img src="<?= media() ?>/images/s1.jpg" alt="Sucural uno">
           <div class="card-body">
             <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat necessitatibus eligendi, soluta ipsa natus, at earum qui enim, illum doloremque, accusantium autem nemo est esse nulla neque eaque repellendus amet.</p>
-            <p>Dirección: Antigua Gautemala <br>
+            <p>Dirección: Mexico <br>
               Teléfono: 4654645 <br>
-              Correo: info@abelosh.com
+              Correo: info@tuxmarket.com
             </p>
           </div>
         </div>

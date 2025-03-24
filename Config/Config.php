@@ -1,7 +1,6 @@
 <?php 
 	const BASE_URL = "http://localhost/TuxMarket-WebStore";
 	// const BASE_URL = "https://tuxmarket-production.up.railway.app/";
-	//const BASE_URL = "https://abelosh.com/tiendavirtual";
 
 	//Zona horaria
 	date_default_timezone_set('America/Mexico_City');
@@ -57,7 +56,7 @@
 	const CAT_FOOTER = "1,2,3,4,5";
 
 	//Datos para Encriptar / Desencriptar
-	const KEY = 'abelosh';
+	const KEY = 'tuxmarket';
 	const METHODENCRIPT = "AES-128-ECB";
 
 	//Envío
