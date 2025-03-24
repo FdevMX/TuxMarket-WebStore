@@ -46,6 +46,10 @@
           <div class="form-group btn-container">
             <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> INICIAR SESIÓN</button>
           </div>
+          <!-- boton de registrarse -->
+          <div class="form-group">
+            <p class="semibold-text mb-0 text-center">¿No tienes una cuenta? <a href="<?= base_url(); ?>/Login/register" class="text-primary">Regístrate aquí</a></p>
+          </div>
         </form>
         <form id="formRecetPass" name="formRecetPass" class="forget-form" action="">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>¿Olvidaste contraseña?</h3>
@@ -54,7 +58,7 @@
             <input id="txtEmailReset" name="txtEmailReset" class="form-control" type="email" placeholder="Email">
           </div>
           <div class="form-group btn-container">
-            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>REINICIAR</button>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>INICIAR RECUPERACION</button>
           </div>
           <div class="form-group mt-3">
             <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Iniciar sesión</a></p>
