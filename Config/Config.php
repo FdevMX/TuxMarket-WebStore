@@ -1,6 +1,6 @@
 <?php 
-	// const BASE_URL = "http://localhost/tienda_virtual";
-	const BASE_URL = "https://tuxmarket-production.up.railway.app/";
+	const BASE_URL = "http://localhost/TuxMarket-WebStore";
+	// const BASE_URL = "https://tuxmarket-production.up.railway.app/";
 	//const BASE_URL = "https://abelosh.com/tiendavirtual";
 
 	//Zona horaria
@@ -14,7 +14,7 @@
 	const DB_CHARSET = "utf8";
 
 	//Para envío de correo
-	const ENVIRONMENT = 1; // Local: 0, Produccón: 1;
+	const ENVIRONMENT = 0; // Local: 0, Produccón: 1;
 
 	//Deliminadores decimal y millar Ej. 24,1989.00
 	const SPD = ".";
@@ -22,7 +22,7 @@
 
 	//Simbolo de moneda
 	const SMONEY = "$";
-	const CURRENCY = "USD";
+	const CURRENCY = "MX";
 
 	//Api PayPal
 	//SANDBOX PAYPAL
